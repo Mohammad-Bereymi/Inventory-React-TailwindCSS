@@ -1,6 +1,7 @@
 import "./App.css";
 import CategoryForm from "./components/Category";
 import NavBar from "./components/NavBar";
+import Productsform from "./components/Products";
 
 const products = [
   {
@@ -44,6 +45,7 @@ function App() {
         <NavBar />
         <div className="container max-w-lg mx-auto p-4">
           <CategoryForm />
+          <Productsform />
         </div>
       </div>
     </div>
