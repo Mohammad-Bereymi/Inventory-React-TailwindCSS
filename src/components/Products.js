@@ -6,6 +6,19 @@ const Productsform = ({ categories }) => {
     quantity: 0,
     category: "",
   });
+  const [products, setProducts] = useState([]);
+  const addNewProductHandler = (e) => {
+    e.preventDefault();
+    setProducts([
+      ...products,
+      {
+        ...productsFormData,
+        createdAt: new Date().toISOString(),
+        id: new Date().getTime(),
+      },
+    ]);
+    setProductsFormData({ title: "", quantity: 0, category: "" });
+  };
   const changeHandler = ({ target }) => {
     setProductsFormData({ ...productsFormData, [target.name]: target.value });
   };
@@ -74,6 +87,7 @@ const Productsform = ({ categories }) => {
           <button
             id="add-new-product"
             className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2"
+            onClick={addNewProductHandler}
           >
             Add New Product
           </button>
