@@ -6,8 +6,17 @@ const CategoryForm = () => {
     title: "",
     description: "",
   });
+  const [categories, setCategories] = useState([]);
   const changeHandler = ({ target }) => {
     setCategoryFormData({ ...categoryFormaData, [target.name]: target.value });
+  };
+  const addNewCategoryHandler = (e) => {
+    e.preventDefault();
+    setCategories([
+      ...categories,
+      { ...categoryFormaData, createdAt: new Date().toISOString() },
+    ]);
+    setCategoryFormData({ title: "", description: "" });
   };
   return (
     <section>
@@ -62,6 +71,7 @@ const CategoryForm = () => {
             <button
               id="add-new-category"
               className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2"
+              onClick={addNewCategoryHandler}
             >
               Add New Category
             </button>
