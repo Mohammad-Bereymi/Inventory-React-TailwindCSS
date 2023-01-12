@@ -40,9 +40,9 @@ const categories = [
 function App() {
   return (
     <div>
-      <div class="bg-slate-800 min-h-screen">
+      <div className="bg-slate-800 min-h-screen">
         <NavBar />
-        <div class="container max-w-lg mx-auto p-4">
+        <div className="container max-w-lg mx-auto p-4">
           <CategoryForm />
         </div>
       </div>
