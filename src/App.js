@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import CategoryForm from "./components/Category";
+import NavBar from "./components/NavBar";
 
+const products = [
+  {
+    id: 1,
+    title: "React.js",
+    category: "frontend",
+    createdAt: "2022-10-31T15:02:00.411Z",
+  },
+  {
+    id: 2,
+    title: "Node.js",
+    category: "backend",
+    createdAt: "2022-10-31T15:03:23.556Z",
+  },
+  {
+    id: 3,
+    title: "Vue.js",
+    category: "frontend",
+    createdAt: "2022-11-01T10:47:26.411Z",
+  },
+];
+
+const categories = [
+  {
+    id: 1,
+    title: "frontend",
+    description: "frontend of applications",
+    createdAt: "2022-10-31T15:03:23.556Z",
+  },
+  {
+    id: 2,
+    title: "backend",
+    description: "the backend of the applications",
+    createdAt: "2022-12-31T15:03:23.556Z",
+  },
+];
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div class="bg-slate-800 min-h-screen">
+        <NavBar />
+        <div class="container max-w-lg mx-auto p-4">
+          <CategoryForm />
+        </div>
+      </div>
     </div>
   );
 }
