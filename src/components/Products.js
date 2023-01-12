@@ -1,4 +1,14 @@
-const Productsform = () => {
+import { useState } from "react";
+
+const Productsform = ({ categories }) => {
+  const [productsFormData, setProductsFormData] = useState({
+    title: "",
+    quantity: 0,
+    category: "",
+  });
+  const changeHandler = ({ target }) => {
+    setProductsFormData({ ...productsFormData, [target.name]: target.value });
+  };
   return (
     <div className="mb-6">
       <h2 className="text-xl text-slate-300 font-bold mb-2">Add New Product</h2>
@@ -9,9 +19,11 @@ const Productsform = () => {
           </label>
           <input
             type="text"
-            name="product-title"
+            name="title"
             id="product-title"
             className="bg-transparent rounded-xl border border-slate-500 text-slate-400"
+            value={productsFormData.title}
+            onChange={changeHandler}
           />
         </div>
         <div>
@@ -23,9 +35,11 @@ const Productsform = () => {
           </label>
           <input
             type="number"
-            name="product-quantity"
+            name="quantity"
             id="product-quantity"
             className="bg-transparent rounded-xl border border-slate-500 text-slate-400"
+            value={productsFormData.quantity}
+            onChange={changeHandler}
           />
         </div>
         <div>
@@ -36,13 +50,24 @@ const Productsform = () => {
             category
           </label>
           <select
-            name="product-category"
-            id="product-category"
+            name="category"
+            id="category"
             className="bg-transparent text-slate-400 rounded-xl w-full"
+            value={productsFormData.category}
+            onChange={changeHandler}
           >
             <option class="bg-slate-500 text-slate-400" value="">
               select a category
             </option>
+            {categories.map((category) => (
+              <option
+                key={category.id}
+                class="bg-slate-500 text-slate-400"
+                value={category.title}
+              >
+                {category.title}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex items-center justify-center gap-x-5">
