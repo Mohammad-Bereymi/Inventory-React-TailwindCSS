@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import CategoryForm from "./components/Category";
 import NavBar from "./components/NavBar";
-import PRoductList from "./components/ProductList";
+import ProductList from "./components/ProductList";
 import Productsform from "./components/Products";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             setProducts={setProducts}
             products={products}
           />
-          <PRoductList products={products} />
+          <ProductList products={products} setProducts={setProducts} />
         </div>
       </div>
     </div>
