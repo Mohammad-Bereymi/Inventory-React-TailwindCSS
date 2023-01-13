@@ -11,19 +11,24 @@ function App() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sort, setSort] = useState("latest");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     let result = products;
     result = filterSearchTitle(result);
+    result = filterSelectedCategory(result);
     result = sortDate(result);
     setFilteredProducts(result);
-  }, [products, sort, searchValue]);
+  }, [products, sort, searchValue, selectedCategory]);
 
   const sortHandler = (e) => {
     setSort(e.target.value);
   };
   const searchHandler = (e) => {
     setSearchValue(e.target.value.trim().toLowerCase());
+  };
+  const selectedCategoryHandler = (e) => {
+    setSelectedCategory(e.target.value);
   };
   const filterSearchTitle = (array) => {
     return array.filter((p) => p.title.toLowerCase().includes(searchValue));
@@ -37,6 +42,11 @@ function App() {
         return new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1;
       }
     });
+  };
+
+  const filterSelectedCategory = (array) => {
+    if (!selectedCategory) return array;
+    return array.filter((item) => item.category == selectedCategory);
   };
 
   useEffect(() => {
@@ -61,7 +71,7 @@ function App() {
   return (
     <div>
       <div className="bg-slate-800 min-h-screen">
-        <NavBar />
+        <NavBar products={products} />
         <div className="container max-w-lg mx-auto p-4">
           <CategoryForm categories={categories} setCategories={setCategories} />
           <Productsform
@@ -74,6 +84,9 @@ function App() {
             searchValue={searchValue}
             onSort={sortHandler}
             onSearch={searchHandler}
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onSelectCategory={selectedCategoryHandler}
           />
           <ProductList products={filteredProducts} setProducts={setProducts} />
         </div>
