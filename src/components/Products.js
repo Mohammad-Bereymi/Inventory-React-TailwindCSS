@@ -68,13 +68,13 @@ const Productsform = ({ categories, setProducts, products }) => {
             value={productsFormData.category}
             onChange={changeHandler}
           >
-            <option class="bg-slate-500 text-slate-400" value="">
+            <option className="bg-slate-500 text-slate-400" value="">
               select a category
             </option>
             {categories.map((category) => (
               <option
                 key={category.id}
-                class="bg-slate-500 text-slate-400"
+                className="bg-slate-500 text-slate-400"
                 value={category.title}
               >
                 {category.title}
